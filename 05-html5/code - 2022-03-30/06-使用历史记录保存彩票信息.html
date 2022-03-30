@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 200px;
+            border: 2px dotted green;
+        }
+    </style>
+</head>
+
+<body>
+    <button>获取彩票信息</button>
+    <div class="box"></div>
+    <script>
+        //1.获取dom
+        var oBtn = document.querySelector('button');
+        var oBox = document.querySelector('.box');
+        //2.给按钮绑定点击事件
+        oBtn.onclick = function () {
+            //3. 7位的随机数，1-34
+            var suiji = getRandom(7, 1, 34);
+            console.log(suiji);
+            //需求：点击返回按钮，看到上一次的彩票信息
+            //把彩票信息的值存到 history中
+            //pushState 参数 ：1，要存的数据  2. url  可以是空字符串
+            window.history.pushState(suiji, "");
+            //10.将随机数填写到 box里
+            oBox.innerHTML = suiji;
+        }
+
+        //绑定点击 返回按钮时能够触发的事件
+        window.onpopstate = function (ev) {
+            //从 history中取出数据
+            console.log('返回触发了', ev.state);
+            oBox.innerHTML = ev.state;
+        }
+
+        //获取多少个随机数的函数
+        //参数 count 个数 start 随机的开始值  end 随机的结束值
+        //返回值  数组
+        function getRandom(count, start, end) {
+            var numArr = [];//装随机数的数组
+            for (var i = 0; i < count; i++) {
+                //获取一个随机数
+                var num1 = Math.floor(Math.random() * (end - start) + start);
+                //将随机数推到数组中
+                numArr.push(num1);
+            }
+            return numArr;
+        }
+
+        console.log(window);
+
+        //history模式  get：ev.state;  set:history.pushState() ; 事件：window.onpopstate
+        //需求：
+        //1.每注投注号码由6个红色球号码和1个蓝色球号码组成。红色球号码从1--33中选择；蓝色球号码从1--16中选择
+        //2.获取随机数的函数需要去重   indexOf
+        //3.渲染页面需要 写 红色 圆圈的样式，蓝色圆圈的样式   
+    </script>
+</body>
+
+</html>

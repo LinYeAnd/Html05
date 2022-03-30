@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="./test.html" type="get">
+        <ul>
+            <li>邮箱: <input type="email" name="email" autocomplete="on" /></li>
+            <li>网址: <input type="url" name="url" autocomplete="off" /></li>
+            <li>日期: <input type="date" name="date" /></li>
+            <li>时间: <input type="time" name="time" /></li>
+            <li>数量: <input type="number" name="number" /></li>
+            <li>手机号码: <input type="tel" name="tel" autofocus pattern="\d{1,5}" /></li>
+            <li>搜索: <input type=" search" name="search" required /></li>
+            <li>颜色: <input type="color" name="color" /></li>
+            <!-- 当我们点击提交按钮就可以验证表单了 -->
+            <li> <input type="submit" value="提交"></li>
+        </ul>
+    </form>
+</body>
+
+</html>

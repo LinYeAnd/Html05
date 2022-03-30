@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+            width: 100%;
+            height: 200px;
+            background: lightgreen;
+        }
+
+        nav {
+            width: 100%;
+            height: 50px;
+            background: lightpink;
+            display: flex;
+            justify-content: space-around;
+            line-height: 50px;
+        }
+
+        aside {
+            width: 50px;
+            height: 200px;
+            position: fixed;
+            top: 50%;
+            right: 10px;
+            background: lightseagreen;
+        }
+
+        article {
+            height: 1000px;
+            background: lightskyblue;
+        }
+
+        footer {
+            width: 100%;
+            height: 100px;
+            background: lightgrey;
+        }
+    </style>
+</head>
+
+<body>
+    <header>我是头部</header>
+    <nav>
+        <div>首页</div>
+        <div>关于我们</div>
+        <div>练习我们</div>
+        <div>公司架构</div>
+        <div>公司理念</div>
+        <div>业务</div>
+    </nav>
+    <article>
+        新华社 <address>北京</address> 3 月28日电
+        3月28日下午，中共中央政治局召开会议，研究近期有关工作。会议开始时，经中共中央总书记、国家主席、中央军委主席<mark>习近平</mark>提议，出席会议的中共中央政治局委员等全体起立，向“3·21”东航MU5735航空器飞行事故遇难同胞默哀。
+
+        <section>
+            体育项目
+        </section>
+
+        <hgroup>
+            <h1>前端课堂</h1>
+            <h2>带您走向人生巅峰，出任CEO，迎接白富美</h2>
+        </hgroup>
+
+        <input type="text" list="valList" />
+        <datalist id="valList">
+            <option value="javascript">javascript</option>
+            <option value="html">html</option>
+            <option value="css">css</option>
+        </datalist>
+        <details>
+            <summary>前端课堂</summary>
+            <p>带您走向人生巅峰，出任CEO，迎娶白富美！</p>
+        </details>
+        <progress max="100" value="76" id="pro">
+            <span id="myspan">76</span>%
+        </progress>
+        <button id="btn">停止</button>
+    </article>
+    <aside> 右侧菜单</aside>
+    <footer>尾部</footer>
+    <script>
+        window.onload = function () {
+            var oPro = document.getElementById('pro');
+            var oMyspan = document.getElementById('myspan');
+            var oBtn = document.getElementById('btn');
+            var time = null;
+            var i = 0;
+            time = setInterval(function () {
+                i++;
+                oPro.value = i;
+                oMyspan.innerHTML = i;
+                if (i >= 100) { i = 0; }
+            }, 50);
+            oBtn.onclick = function () {
+                clearInterval(time);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

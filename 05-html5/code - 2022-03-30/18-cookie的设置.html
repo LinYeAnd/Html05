@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="setCookie">设置cookie</button>
+    <button id="getCookie">获取cookie</button>
+    <script>
+        document.getElementById('setCookie').onclick = function () {
+            //max-age 过期时间
+            document.cookie = 'age =18;max-age=1000';//设置过期时间的
+            document.cookie = 'name=lili';//没有 设置过期时间  浏览器关闭就没有了, session
+        }
+
+        document.getElementById('getCookie').onclick = function () {
+            var x = document.cookie;
+            console.log(x);
+        }
+    </script>
+</body>
+
+</html>

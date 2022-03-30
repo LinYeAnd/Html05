@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video src="./media/1.mp4"></video>
+    <!-- 有步长的 input框 -->
+    <input type="range" name="" id="range" value="1" min="0" max="1" step="0.1" />
+    <button>播放</button>
+    <button>全屏</button>
+    <button>00:00:00</button>
+    <button>00:00:00</button>
+    <progress max="100" value="76" id="pro"></progress>
+
+    <script>
+        var oV = document.querySelector('video');
+        var aBtn = document.querySelectorAll('button');
+        var oRange = document.querySelector('#range');
+        var oPro = document.querySelector('progress');
+        var type = true;
+        aBtn[0].onclick = function () {
+            if (type) {
+                //播放
+                oV.play();
+                aBtn[0].innerHTML = "暂停";
+            } else {
+                //暂停
+                oV.pause();
+                aBtn[0].innerHTML = "播放";
+            }
+            type = !type;
+        }
+        //浏览器前缀   webkit   chrome 浏览器，moz 火狐浏览器，ms IE浏览器  ，o 欧朋浏览器
+        aBtn[1].onclick = function () {
+            //判断浏览器类型
+            var uA = navigator.userAgent;
+            if (uA.indexOf('Chrome') !== -1) {
+                oV.webkitRequestFullScreen();
+            } else {
+                oV.mozRequestFullScreen();
+            }
+        }
+        //音量调节
+        oRange.onchange = function () {
+            console.log(this.value);
+            oV.volume = this.value;
+        }
+
+        aBtn[2].innerHTML = changeTime(oV.duration ? oV.duration : 195.496);
+        console.log(oV.duration);
+
+        //播放时间   setInterval  1秒调用一次
+        var timer = setInterval(function () {
+            //播放时间
+            aBtn[3].innerHTML = changeTime(oV.currentTime);
+            //进度条  
+            oPro.value = oV.currentTime / oV.duration * 100;
+            if (oV.currentTime == oV.duration) {
+                clearInterval(timer);
+            }
+        }, 1000);
+
+
+
+        //将总时间的时间戳转日期时间
+        function changeTime(time) {
+            //小时
+            var h = Math.floor(time / 60 / 60);
+            //分钟
+            var m = Math.floor(time / 60 % 60);
+            //秒
+            var s = Math.floor(time % 60);
+
+            return addZero(h) + ":" + addZero(m) + ":" + addZero(s);
+        }
+
+        function addZero(num) {
+            return num < 10 ? "0" + num : num;
+        }
+
+
+    //快进: 功能
+    //歌曲可以显示字幕
+    </script>
+
+</body>
+
+</html>

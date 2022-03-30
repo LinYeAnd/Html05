@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video src="./media/1.mp4" controls poster="./img/002.jpg"></video>
+    <button>获取属性</button>
+    <script>
+        var oV = document.querySelector('video');
+        var oBtn = document.querySelector('button');
+        oBtn.onclick = function () {
+            console.log('播放时间：' + oV.currentTime);
+            console.log("媒体总时间：" + oV.duration);
+            console.log("音量：" + oV.volume);
+            console.log("是否静音：" + oV.muted);
+        }
+    </script>
+
+</body>
+
+</html>

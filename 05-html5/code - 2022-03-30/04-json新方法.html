@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //json 严格模式， 需要  key 用双引号引起来
+        var myStr = '{"name":"lili","age":18}';
+        console.log(typeof myStr);
+        // JSON.parse 将 json字符串转json的对象时，会进行格式验证
+        var myObj = JSON.parse(myStr);
+        console.log(myObj);
+
+        var myStr1 = `{'name':"lili",'age':18}`;
+        // var myObj1 = JSON.parse(myStr1);
+        // console.log(myObj1);
+
+        //json是非严格模式时，用eval可以将字符串转json对象
+        //eval 可以 执行字符串中的语句或表达式
+        console.log("2+2");
+        console.log(eval("2+2"));
+        // console.log(eval("alert('我是eval运行的')"));
+
+        //eval将格式不严格的字符串转json对象
+        var myObj2 = eval('(' + myStr1 + ')')
+        console.log(myObj2);
+
+        //注意:eval ，抓取其他的网站数据时，解析格式不是十分严格的数据的，eval的性能比较差，能不用尽量不用
+    </script>
+</body>
+
+</html>

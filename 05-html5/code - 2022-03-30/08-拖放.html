@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul,
+        li {
+            list-style: none;
+        }
+
+        li {
+            width: 100px;
+            height: 50px;
+            background: green;
+            margin: 5px;
+        }
+
+        .box {
+            width: 400px;
+            height: 400px;
+            border: 2px solid orange;
+            margin-left: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <!-- draggable="true" 设置这个dom节点可以拖动了 -->
+        <li draggable="true">1</li>
+        <li draggable="true">2</li>
+        <li draggable="true">3</li>
+    </ul>
+    <div class="box"></div>
+    <script>
+        /* 拖拽源事件 
+        dragstart ,  拖拽开始 拖拽前触发
+        drag , 拖拽中    拖拽前、拖拽结束之间，连续触发
+        dragend  , 拖拽结束触发
+        目标元素事件 :  事件对象为目标元素
+        dragenter ,  进入目标元素触发，相当于mouseover
+        dragover  ,进入目标、离开目标之间，连续触发
+        dragleave ,  离开目标元素触发，相当于mouseout
+        drop  ,  在目标元素上释放鼠标触发   ***   想要执行 drop ，必须在 dragover里面阻止默认事件
+        */
+        //1.获取dom
+        var oUl = document.querySelector('ul');
+        var aLi = oUl.querySelectorAll('li');
+        var oBox = document.querySelector('.box');
+        //2.给li绑定开始拖拽的事件
+        for (var i = 0; i < aLi.length; i++) {
+            //2.1 开始拖动
+            aLi[i].ondragstart = function () {
+                this.style.background = "blue";
+            }
+            //2.2拖动中
+            var num = 0;
+            aLi[i].ondrag = function () {
+                num++;
+                // console.log(num);
+            }
+            //2.3 拖拽结束
+            aLi[i].ondragend = function () {
+                this.style.background = "yellow";
+            }
+        }
+
+        //3.进入目的地的事件
+        //3.1 进入目的地的事件
+        oBox.ondragenter = function () {
+            this.style.background = "pink";
+        }
+        //3.2 在目的地的上方事件
+        var a = 0;
+        oBox.ondragover = function () {
+            a++;
+            console.log("a:" + a);
+        }
+        //3.3 离开目的地的事件
+        oBox.ondragleave = function () {
+            this.style.background = "#000";
+        }
+        //拖拽事件的执行顺序： dragstart  drag ondragenter  ondragover  ondragleave ondragend
+
+    </script>
+</body>
+
+</html>

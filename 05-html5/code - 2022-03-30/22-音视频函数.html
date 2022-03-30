@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video src="./media/1.mp4"></video>
+    <button>播放</button>
+    <button>暂停</button>
+    <button>重新播放</button>
+    <script>
+        var oV = document.querySelector('video');
+        var aBtn = document.querySelectorAll('button');
+        aBtn[0].onclick = function () {
+            //播放
+            oV.play();
+        }
+        aBtn[1].onclick = function () {
+            //暂停
+            oV.pause();
+        }
+        aBtn[2].onclick = function () {
+            //重新播放
+            oV.load();
+        }
+    </script>
+
+</body>
+
+</html>

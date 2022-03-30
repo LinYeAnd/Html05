@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>保存</button>
+    <button>获取</button>
+    <button>删除</button>
+    <button>清除所有</button>
+    <input type="text" name="user" id="" />
+    <script>
+        //1.获取
+        var aBtn = document.querySelectorAll('button');
+        var oInput = document.querySelector('input');
+        //2. 保存 localStorage
+        aBtn[0].onclick = function () {
+            localStorage.setItem('user', '大牛');
+            localStorage.setItem('text', oInput.value);
+        }
+        //3. 获取 localStorage
+        aBtn[1].onclick = function () {
+            console.log(localStorage.getItem('user'));
+            console.log(localStorage.getItem('text'));
+        }
+        //4. 删除 localStorage
+        aBtn[2].onclick = function () {
+            localStorage.removeItem('user');
+        }
+        //5. 清除 localStorage
+        aBtn[3].onclick = function () {
+            localStorage.clear();
+        }
+        /*
+        localStorage 和sessionStorage 的区别：
+        1.sessionStorage 浏览器关闭后 缓存就没有了；localStorage 浏览器关闭后，缓存还在
+        2.sessionStorage 不能跨页面传参  ；localStorage 可以跨页面传参
+
+        localStorage 和sessionStorage 与cookie的区别：
+        1.cookie  需要 每次将数据提交给服务端 ,安全性低，有可能中途被截取；cookie 的大小比较小  4k
+        2.localStorage 和sessionStorage 只保存在 客户端的缓存 ，大小是5M 比较大
+        3.cookie 服务器通知给浏览器，所以,不管是设置还是删除,都需要刷新一下才会有最新的效果；
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>保存</button>
+    <button>获取</button>
+    <button>删除</button>
+    <button>清除所有</button>
+    <input type="text" name="user" id="" />
+    <script>
+        //1.获取
+        var aBtn = document.querySelectorAll('button');
+        var oInput = document.querySelector('input');
+        //2. 保存 sessionStorage
+        aBtn[0].onclick = function () {
+            sessionStorage.setItem('user', '大牛');
+            sessionStorage.setItem('text', oInput.value);
+        }
+        //3. 获取 sessionStorage
+        aBtn[1].onclick = function () {
+            console.log(sessionStorage.getItem('user'));
+            console.log(sessionStorage.getItem('text'));
+        }
+        //4. 删除 sessionStorage
+        aBtn[2].onclick = function () {
+            sessionStorage.removeItem('user');
+        }
+        //5. 清除 sessionStorage
+        aBtn[3].onclick = function () {
+            sessionStorage.clear();
+        }
+
+    </script>
+</body>
+
+</html>

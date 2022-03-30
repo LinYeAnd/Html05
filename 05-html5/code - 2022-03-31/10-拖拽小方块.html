@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul,
+        li {
+            list-style: none;
+        }
+
+        li {
+            width: 100px;
+            height: 50px;
+            background: green;
+            margin: 5px;
+        }
+
+        .box {
+            width: 400px;
+            height: 400px;
+            border: 2px solid orange;
+            margin-left: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <!-- draggable="true" 设置这个dom节点可以拖动了 -->
+        <li draggable="true">1</li>
+        <li draggable="true">2</li>
+        <li draggable="true">3</li>
+    </ul>
+    <ul class="box"></ul>
+    <script>
+        //1.获取dom
+        var oUl = document.querySelector('ul');
+        var aLi = oUl.querySelectorAll('li');
+        var oBox = document.querySelector('.box');
+
+        //2.开始拖拽
+        //2.给li绑定开始拖拽的事件
+        for (var i = 0; i < aLi.length; i++) {
+            //2.1 开始拖动
+            aLi[i].ondragstart = function (ev) {
+                this.style.background = "blue";
+                //传参
+                ev.dataTransfer.setData('text', this.innerHTML);
+            }
+        }
+        oBox.ondragover = function (ev) {
+            //阻止默认事件
+            ev.preventDefault();
+        }
+        //绑定ondrop的事件
+        oBox.ondrop = function (ev) {
+            console.log(ev.dataTransfer.getData('text'));
+            var text = ev.dataTransfer.getData('text');
+            //删除该innerHTML的对应的标签
+            for (var i = 0; i < aLi.length; i++) {
+                if (text == aLi[i].innerHTML) {//找到该元素
+                    //oUl.removeChild(aLi[i]);
+                    //创建一个 li
+                    //var newLi = document.createElement('li');
+                    // newLi.innerHTML = text;
+                    oBox.appendChild(aLi[i]);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

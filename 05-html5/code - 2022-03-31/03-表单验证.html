@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="http://www.baidu.com" id="myform">
+        用户名：<input type="text" id="user" name="user" minlength="6" maxlength="15" required pattern="^[a-z]+$" />
+        <input type="submit" value="提交">
+    </form>
+    <script>
+        window.onload = function () {
+            var oUser = document.getElementById("user");
+            var oForm = document.getElementById("myform");
+            /*
+            addEventListener 和 onclick  on*** 的区别：
+            1.对于事件绑定，可以在同一个元素上绑定多个类型一样的事件，on**** 如果绑定多个只执行最后一个
+            2.addEventListener 有第三个参数，可以设置 冒泡的方式  ，冒泡时执行，捕获时执行
+            */
+            /*
+            invalid 绑定了 验证事件
+            fn 执行的函数
+            false 执行的时机
+            */
+            oUser.addEventListener('invalid', fn, false);
+            function fn(ev) {
+                console.log(ev);
+                console.log(this.validity);
+
+            }
+            oForm.addEventListener("submit", function (ev) {
+                ev.preventDefault();
+            })
+
+        }
+    </script>
+</body>
+
+</html>

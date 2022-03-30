@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 400px;
+            height: 600px;
+            border: 2px dotted orangered;
+        }
+    </style>
+</head>
+
+<body>
+    图片拖动预览
+    <div id="box">
+        <img src="" id="img" alt="">
+    </div>
+    <script>
+        //1.获取dom
+        var oImg = document.querySelector('img');
+        var oBox = document.querySelector('#box');
+        //绑定 拖动目的地悬停
+        oBox.ondragover = function (ev) {
+            //阻止ondragleave事件
+            ev.preventDefault();
+        }
+        //绑定 拖动在目标上结束事件
+        oBox.ondrop = function (ev) {
+            console.log("图片拖过来了哦");
+            //阻止图片拖动结束时在浏览器默认打开的事件
+            ev.preventDefault();
+            //获取文件   , f[0].type 图片的类型
+            var f = ev.dataTransfer.files;
+            console.log(f);
+            //读取图片信息
+            var fd = new FileReader;//创建一个文件读取对象
+            fd.readAsDataURL(f[0]);//f[0] 文件， 将文件读取为 数据的url的形式  ，base64格式图片
+            fd.onload = function () {//将文件读取完后执行里面的代码
+                console.log(this.result);
+                //判断拖过来的文件类型
+                if (f[0].type.indexOf('image') !== -1) {
+                    oImg.src = this.result;
+                } else {
+                    alert("请拖一个图片文件过来");
+                }
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

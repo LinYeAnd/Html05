@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>设置cookie</button>
+    <button>获取cookie</button>
+    <button>删除cookie</button>
+    <script src="./js/jquery-1.9.0.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
+    <script>
+        //1.设置cookie
+        $('button').eq(0).on('click', function () {
+            $.cookie("user", "天地一号");
+            $.cookie("password", "123456", { expires: 4 })//expires: 设置的过期的天数
+        })
+
+        //2.获取 cookie
+        $('button').eq(1).on('click', function () {
+            console.log($.cookie('password'));
+        })
+
+
+        //3.删除cookie
+        $('button').eq(2).on('click', function () {
+            $.removeCookie("password");
+        })
+
+        //cookie 服务器通知给浏览器，所以,不管是设置还是删除,都需要刷新一下才会有最新的效果；
+    </script>
+</body>
+
+</html>
